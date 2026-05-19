@@ -1,0 +1,25 @@
+{
+  "name": "wechat-ai-assistant",
+  "version": "0.1.0",
+  "description": "AI assistant that reads WeChat communications and extracts tasks/reminders",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "wechaty": "^0.68.10",
+    "openai": "^4.52.0",
+    "better-sqlite3": "^9.2.2"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "wechat",
+    "ai",
+    "task-extraction",
+    "chatgpt"
+  ],
+  "author": "catacuconu",
+  "license": "MIT"
+}
