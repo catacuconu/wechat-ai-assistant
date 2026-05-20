@@ -1,11 +1,8 @@
-import { createRequire } from 'module';
+import { WechatyBuilder } from 'wechaty';
 import { OpenAI } from 'openai';
 import { config } from '../config.js';
 import fs from 'fs';
 import path from 'path';
-
-const require = createRequire(import.meta.url);
-const { Wechaty } = require('wechaty');
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -83,10 +80,11 @@ async function extractTasks(message) {
   }
 }
 
-// Initialize Wechaty bot
-const bot = new Wechaty({
-  name: 'wechat-ai-assistant',
-});
+// Initialize Wechaty bot using builder
+const bot = WechatyBuilder
+  .create({ name: 'wechat-ai-assistant' })
+  .withPuppetService('wechaty-puppet-wechat4u')
+  .build();
 
 bot.on('scan', (qrcode, status) => {
   console.log(`\n[${new Date().toLocaleTimeString()}] Scan QR Code to login: ${status}\n`);
@@ -94,11 +92,11 @@ bot.on('scan', (qrcode, status) => {
 });
 
 bot.on('login', (user) => {
-  console.log(`\n[${new Date().toLocaleTimeString()}] User logged in: ${user.name}\n`);
+  console.log(`\n[${new Date().toLocaleTimeString()}] User logged in: ${user.name()}\n`);
 });
 
 bot.on('logout', (user) => {
-  console.log(`\n[${new Date().toLocaleTimeString()}] User logged out: ${user.name}\n`);
+  console.log(`\n[${new Date().toLocaleTimeString()}] User logged out: ${user.name()}\n`);
 });
 
 bot.on('message', async (msg) => {
