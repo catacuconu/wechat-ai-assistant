@@ -1,8 +1,11 @@
-import Wechaty from 'wechaty';
+import { createRequire } from 'module';
 import { OpenAI } from 'openai';
 import { config } from '../config.js';
 import fs from 'fs';
 import path from 'path';
+
+const require = createRequire(import.meta.url);
+const { Wechaty } = require('wechaty');
 
 // Initialize OpenAI client
 const openai = new OpenAI({
