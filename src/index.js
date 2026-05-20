@@ -1,4 +1,4 @@
-import { Wechaty } from 'wechaty';
+import Wechaty from 'wechaty';
 import { OpenAI } from 'openai';
 import { config } from '../config.js';
 import fs from 'fs';
